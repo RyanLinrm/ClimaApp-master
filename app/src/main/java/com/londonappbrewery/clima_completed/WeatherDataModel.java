@@ -8,6 +8,8 @@ public class WeatherDataModel {
     // Member variables that hold our relevant weather inforomation.
     private String mTemperature;
     private String mCity;
+    private String mHumidity;
+    private String mPressure;
     private String mIconName;
     private int mCondition;
 
@@ -21,6 +23,13 @@ public class WeatherDataModel {
             WeatherDataModel weatherData = new WeatherDataModel();
 
             weatherData.mCity = jsonObject.getString("name");
+            //request data of humidity
+            int humiValue = jsonObject.getJSONObject("main").getInt("humidity");
+            weatherData.mHumidity = Integer.toString( humiValue );
+            //request data of pressure
+            int pressValue = jsonObject.getJSONObject("main").getInt("pressure");
+            weatherData.mPressure = Integer.toString( pressValue );
+
             weatherData.mCondition = jsonObject.getJSONArray("weather").getJSONObject(0).getInt("id");
             weatherData.mIconName = updateWeatherIcon(weatherData.mCondition);
 
@@ -77,6 +86,14 @@ public class WeatherDataModel {
 
     public String getCity() {
         return mCity;
+    }
+
+    //Get humidity/pressure methods:
+    public String getHumidity() {
+        return "Humidity: " + mHumidity;
+    }
+    public String getPressure() {
+        return "  Pressure: " + mPressure;
     }
 
     public String getIconName() {

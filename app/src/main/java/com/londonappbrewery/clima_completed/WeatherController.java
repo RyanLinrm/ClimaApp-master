@@ -60,6 +60,8 @@ public class WeatherController extends AppCompatActivity {
     // Member Variables:
     boolean mUseLocation = true;
     TextView mCityLabel;
+    TextView mHumidity;
+    TextView mPressure;
     ImageView mWeatherImage;
     TextView mTemperatureLabel;
     String City="new york";               //Jie Lan-which city
@@ -81,6 +83,10 @@ public class WeatherController extends AppCompatActivity {
         // Instead of: mCityLabel = (TextView) findViewById(R.id.locationTV);
 
         mCityLabel = findViewById(R.id.locationTV);
+        //Humidity and pressure text
+        mHumidity = findViewById(R.id.humidity_txt);
+        mPressure = findViewById(R.id.Pressure_txt);
+
         mWeatherImage = findViewById(R.id.weatherSymbolIV);
         mTemperatureLabel = findViewById(R.id.tempTV);
         ImageButton changeCityButton = findViewById(R.id.changeCityButton);
@@ -355,6 +361,9 @@ public class WeatherController extends AppCompatActivity {
             mTemperatureLabel.setText(Integer.parseInt(weather.getTemperature())*9/5+32+"°F");
         }
         mCityLabel.setText(weather.getCity());
+        //pressure and humidity
+        mHumidity.setText(weather.getHumidity());
+        mPressure.setText(weather.getPressure());
 
         // Update the icon based on the resource id of the image in the drawable folder.
         int resourceID = getResources().getIdentifier(weather.getIconName(), "drawable", getPackageName());
