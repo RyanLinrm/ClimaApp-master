@@ -363,7 +363,7 @@ public class WeatherController extends AppCompatActivity {
         mCityLabel.setText(weather.getCity());
         //pressure and humidity
         mHumidity.setText(weather.getHumidity());
-        mPressure.setText(weather.getPressure());
+        mPressure.setText(weather.getVisibility());
 
         // Update the icon based on the resource id of the image in the drawable folder.
         int resourceID = getResources().getIdentifier(weather.getIconName(), "drawable", getPackageName());

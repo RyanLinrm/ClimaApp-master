@@ -9,7 +9,7 @@ public class WeatherDataModel {
     private String mTemperature;
     private String mCity;
     private String mHumidity;
-    private String mPressure;
+    private String mVisib;
     private String mIconName;
     private int mCondition;
 
@@ -27,8 +27,9 @@ public class WeatherDataModel {
             int humiValue = jsonObject.getJSONObject("main").getInt("humidity");
             weatherData.mHumidity = Integer.toString( humiValue );
             //request data of pressure
-            int pressValue = jsonObject.getJSONObject("main").getInt("pressure");
-            weatherData.mPressure = Integer.toString( pressValue );
+            int VisibValue = jsonObject.getInt("visibility");
+            VisibValue /= 1000;
+            weatherData.mVisib = Integer.toString( VisibValue );
 
             weatherData.mCondition = jsonObject.getJSONArray("weather").getJSONObject(0).getInt("id");
             weatherData.mIconName = updateWeatherIcon(weatherData.mCondition);
@@ -90,10 +91,10 @@ public class WeatherDataModel {
 
     //Get humidity/pressure methods:
     public String getHumidity() {
-        return "Humidity: " + mHumidity;
+        return "Humidity: " + mHumidity + "%";
     }
-    public String getPressure() {
-        return "  Pressure: " + mPressure;
+    public String getVisibility() {
+        return "  Visibility: " + mVisib + "km";
     }
 
     public String getIconName() {
